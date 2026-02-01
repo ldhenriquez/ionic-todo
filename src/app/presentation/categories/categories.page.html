@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Categorías</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openCreate()" aria-label="Crear categoría">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--padding-bottom: 88px;">
+  <ion-list>
+    <ion-item *ngFor="let c of (categories$ | async); trackBy: trackById">
+      <ion-label>{{ c.name }}</ion-label>
+      <ion-button fill="clear" slot="end" (click)="openEdit(c.id, c.name)" aria-label="Editar">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="danger" slot="end" (click)="confirmDelete(c.id)" aria-label="Eliminar">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding" *ngIf="(categories$ | async)?.length === 0">
+    <ion-text color="medium">
+      <p>No hay categorías. Crea una para empezar.</p>
+    </ion-text>
+  </div>
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>

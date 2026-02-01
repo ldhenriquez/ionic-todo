@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.todo" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>IonicTodoClean</name>
+  <description>Ionic To-Do List with categories, feature flags and local storage.</description>
+  <author email="you@example.com" href="https://example.com">Candidate</author>
+
+  <content src="index.html" />
+
+  <access origin="*" />
+  <allow-navigation href="*" />
+
+  <!-- Android SDK alignment for cordova-android 14 -->
+  <preference name="android-targetSdkVersion" value="35" />
+  <preference name="android-compileSdkVersion" value="35" />
+
+  <!-- Cordova Firebase Remote Config plugin expects these at project root -->
+  <platform name="android">
+    <resource-file src="google-services.json" target="app/google-services.json" />
+  </platform>
+
+  <platform name="ios">
+    <resource-file src="GoogleService-Info.plist" />
+  </platform>
+</widget>

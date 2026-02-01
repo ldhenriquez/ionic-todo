@@ -1,0 +1,16 @@
+ion-toolbar {
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+}
+
+ion-segment {
+  width: 100%;
+}
+
+ion-icon {
+  margin-bottom: 4px;
+}
+
+ion-segment-button {
+  min-height: 44px;
+}

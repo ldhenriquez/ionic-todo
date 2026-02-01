@@ -1,0 +1,76 @@
+{
+  "name": "ionic-todo-clean-arch",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ionic + Angular To-Do List (Cordova) with Clean Architecture, local storage, categories, filters, Firebase Remote Config feature flags, and performance optimizations.",
+  "scripts": {
+    "serve": "ng serve",
+    "ionic:serve": "ionic serve",
+    "build": "ng build",
+    "build:prod": "ng build --configuration production",
+    "test": "ng test",
+    "lint": "ng lint",
+    "cordova:android": "bash ./scripts/cordova-build-android-release.sh",
+    "cordova:android:debug": "bash scripts/cordova-build-android-debug.sh",
+    "cordova:ios": "bun run build:prod && bash scripts/cordova-add-platforms.sh ios && cordova build ios --debug",
+    "cordova:add:android": "bash scripts/cordova-add-platforms.sh android",
+    "cordova:add:ios": "bash scripts/cordova-add-platforms.sh ios"
+  },
+  "dependencies": {
+    "@angular/animations": "^17.3.0",
+    "@angular/cdk": "^17.3.0",
+    "@angular/common": "^17.3.0",
+    "@angular/compiler": "^17.3.0",
+    "@angular/core": "^17.3.0",
+    "@angular/forms": "^17.3.0",
+    "@angular/platform-browser": "^17.3.0",
+    "@angular/platform-browser-dynamic": "^17.3.0",
+    "@angular/router": "^17.3.0",
+    "@ionic/angular": "^7.8.0",
+    "@ionic/core": "^7.8.0",
+    "@ionic/storage": "^3.0.6",
+    "@ionic/storage-angular": "^4.0.0",
+    "ionicons": "^7.2.0",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.6.2",
+    "zone.js": "~0.14.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.3.0",
+    "@angular-eslint/builder": "^17.3.0",
+    "@angular-eslint/eslint-plugin": "^17.3.0",
+    "@angular-eslint/eslint-plugin-template": "^17.3.0",
+    "@angular-eslint/template-parser": "^17.3.0",
+    "@angular/cli": "^17.3.0",
+    "@angular/compiler-cli": "^17.3.0",
+    "@ionic/cli": "^7.2.0",
+    "@ionic/cordova-builders": "^10.0.0",
+    "@types/jasmine": "~5.1.4",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "cordova": "^12.0.0",
+    "cordova-android": "^14.0.1",
+    "cordova-ios": "^8.0.0",
+    "cordova-plugin-firebase-config": "^8.0.0",
+    "cordova-support-android-plugin": "~2.0.4",
+    "eslint": "^8.57.0",
+    "jasmine-core": "~5.1.2",
+    "karma": "~6.4.3",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.1",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.4.5"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-firebase-config": {
+        "ANDROID_FIREBASE_BOM_VERSION": "32.5.0"
+      }
+    },
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  }
+}

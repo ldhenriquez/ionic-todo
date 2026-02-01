@@ -1,0 +1,37 @@
+:host {
+  display: block;
+}
+
+/*
+  Evita saltos de alineación cuando cambia el valor del ion-select.
+  Ionic puede alternar clases internas (p.ej. `legacy-select`) y el ancho
+  visual del componente cambia si el texto/label interno ocupa más espacio.
+  Este CSS fija un ancho estable y alinea el texto a la derecha.
+*/
+.task-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.task-actions__select {
+  /* Ancho estable (responsive) para evitar que el delete icon “salte” */
+  width: clamp(110px, 24vw, 150px);
+  min-width: 110px;
+  max-width: 150px;
+
+  /* Compacto dentro del slot end */
+  --padding-start: 0px;
+  --padding-end: 0px;
+}
+
+/* Alineación del texto seleccionado */
+.task-actions__select::part(text) {
+  text-align: right;
+}
+
+/* Un poco de consistencia visual para el icono del select */
+.task-actions__select::part(icon) {
+  margin-inline-start: 6px;
+}

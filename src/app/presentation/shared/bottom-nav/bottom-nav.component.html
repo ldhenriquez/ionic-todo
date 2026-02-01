@@ -1,0 +1,18 @@
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment
+      [value]="(active$ | async)"
+      (ionChange)="navigate($event.detail.value)"
+      aria-label="Navegación"
+    >
+      <ion-segment-button value="tasks">
+        <ion-icon name="checkmark-done-outline"></ion-icon>
+        <ion-label>Tareas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="categories" *ngIf="(categoriesEnabled$ | async)">
+        <ion-icon name="pricetags-outline"></ion-icon>
+        <ion-label>Categorías</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

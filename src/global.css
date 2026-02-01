@@ -1,0 +1,39 @@
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+
+/* Optional CSS utils */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Ensure headers stay above scrolling content on all WebViews */
+ion-header {
+  position: relative;
+  z-index: 10;
+}
+
+/*
+  Ensure Ionic layout containers fill the viewport.
+  When running in desktop browsers (ng serve) some combinations of wrappers
+  can lead to the routed page being measured with an incorrect height.
+*/
+html,
+body,
+ion-app,
+ion-router-outlet {
+  height: 100%;
+}
+
+/*
+  IMPORTANT:
+  Do not override Ionic's internal pointer-events handling.
+  Ionic uses pointer-events to prevent invisible stacked pages from blocking
+  interactions. Overriding it can cause the entire UI to become non-clickable.
+*/

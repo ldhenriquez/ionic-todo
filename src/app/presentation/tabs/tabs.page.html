@@ -1,0 +1,15 @@
+<ion-tabs>
+  <ion-router-outlet></ion-router-outlet>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tasks" [routerLink]="['/tabs/tasks']">
+      <ion-icon name="checkmark-done-outline"></ion-icon>
+      <ion-label>Tareas</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="(categoriesEnabled$ | async)" tab="categories" [routerLink]="['/tabs/categories']">
+      <ion-icon name="pricetag-outline"></ion-icon>
+      <ion-label>Categorías</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

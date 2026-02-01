@@ -1,0 +1,33 @@
+<ion-item [detail]="false">
+  <ion-checkbox slot="start" [checked]="task.completed" (ionChange)="toggle.emit()"></ion-checkbox>
+
+  <ion-label>
+    <h2 [style.textDecoration]="task.completed ? 'line-through' : 'none'">{{ task.title }}</h2>
+    <p *ngIf="categoriesEnabled">{{ categoryName }}</p>
+  </ion-label>
+
+  <!--
+    Actions in a single end-slot container to prevent Ionic from switching the ion-select
+    between modern and legacy render modes ("legacy-select"), which causes horizontal
+    layout shifts when the category changes.
+  -->
+  <div slot="end" class="task-actions">
+    <ion-select
+      *ngIf="categoriesEnabled"
+      interface="popover"
+      class="task-actions__select"
+      label=""
+      labelPlacement="start"
+      justify="end"
+      [value]="task.categoryId ?? null"
+      (ionChange)="onCategoryChange($event.detail.value)"
+    >
+      <ion-select-option [value]="null">Sin categoría</ion-select-option>
+      <ion-select-option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</ion-select-option>
+    </ion-select>
+
+    <ion-button fill="clear" color="danger" class="task-actions__delete" (click)="delete.emit()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </div>
+</ion-item>

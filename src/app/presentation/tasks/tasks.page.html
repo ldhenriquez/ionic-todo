@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>To‑Do</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAddModal()" aria-label="Agregar tarea">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Primary CTA (also works if toolbars are overlapped in some WebViews) -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openAddModal()" aria-label="Agregar tarea">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ng-container *ngIf="vm$ | async as vm">
+    <div class="filters ion-padding">
+      <ion-segment [value]="vm.status" (ionChange)="onStatusChange($event.detail.value)">
+        <ion-segment-button value="all">
+          <ion-label>Todas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="active">
+          <ion-label>Pendientes</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="completed">
+          <ion-label>Hechas</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-searchbar
+        class="ion-margin-top"
+        placeholder="Buscar tarea…"
+        [value]="vm.query"
+        debounce="250"
+        (ionInput)="facade.setQuery(($event.detail.value ?? '').toString())"
+      ></ion-searchbar>
+
+      <ng-container *ngIf="(categoriesEnabled$ | async)">
+        <ion-item lines="none" class="ion-margin-top">
+          <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+          <ion-select
+            interface="popover"
+            placeholder="Filtrar por categoría"
+            [value]="vm.categoryId"
+            (ionChange)="facade.setCategoryFilter($event.detail.value)"
+          >
+            <ion-select-option value="all">Todas</ion-select-option>
+            <ion-select-option *ngFor="let c of vm.categories" [value]="c.id">
+              {{ c.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ng-container>
+
+      <ng-container *ngIf="(bulkEnabled$ | async)">
+        <div class="bulk ion-margin-top">
+          <ion-button size="small" fill="outline" (click)="facade.completeAll()">Completar todas</ion-button>
+          <ion-button size="small" color="danger" fill="outline" (click)="confirmClearCompleted()">Borrar completadas</ion-button>
+        </div>
+      </ng-container>
+    </div>
+
+    <div *ngIf="vm.tasks.length === 0" class="empty">
+      <ion-text color="medium">
+        <h2>Sin tareas</h2>
+        <p>Crea tu primera tarea con el botón +</p>
+      </ion-text>
+    </div>
+
+    <ion-list *ngIf="vm.tasks.length > 0">
+      <app-task-item
+        *ngFor="let t of vm.tasks; trackBy: trackById"
+        [task]="t"
+        [categoryName]="t.categoryId ? (vm.categoryLookup.get(t.categoryId)?.name ?? 'Sin categoría') : 'Sin categoría'"
+        [categories]="vm.categories"
+        [categoriesEnabled]="(categoriesEnabled$ | async) ?? true"
+        (toggle)="facade.toggle(t.id)"
+        (delete)="confirmDelete(t.id)"
+        (categoryChange)="facade.setCategory(t.id, $event)"
+      ></app-task-item>
+    </ion-list>
+  </ng-container>
+</ion-content>
+
+<app-bottom-nav></app-bottom-nav>

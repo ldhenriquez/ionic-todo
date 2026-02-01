@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nueva tarea</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Título</ion-label>
+    <ion-input [(ngModel)]="title" placeholder="Ej: Comprar leche"></ion-input>
+  </ion-item>
+
+  <ng-container *ngIf="(categoriesEnabled$ | async)">
+    <ion-item>
+      <ion-label position="stacked">Categoría</ion-label>
+      <ion-select interface="popover" [(ngModel)]="categoryId">
+        <ion-select-option [value]="null">Sin categoría</ion-select-option>
+        <ion-select-option *ngFor="let c of (categories$ | async)" [value]="c.id">{{ c.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ng-container>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="save()">Guardar</ion-button>
+</ion-content>
