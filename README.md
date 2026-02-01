@@ -113,7 +113,7 @@ bunx cordova plugin add cordova-plugin-firebase-config
 Para la entrega, crea una carpeta `evidence/` con:
 - Capturas de pantalla (CRUD de tareas, CRUD de categorías, filtros, búsqueda)
 - Un video corto mostrando el flujo completo
-- Artefactos de build: APK/AAB (Android) y (si aplica) IPA (iOS)
+- Artefactos de build: APK/AAB (Android) se encuenran en `evidence/builds/android`
 
 ---
 
